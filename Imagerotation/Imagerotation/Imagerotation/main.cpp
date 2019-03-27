@@ -172,19 +172,26 @@ int RotationLeft90(unsigned char * src, int srcW, int srcH, int channel)
 	return 0;
 }
 
-void printImage(unsigned char * image, int width, int height)
+void printImage(unsigned char * image, int width, int height, int channel)
 {
 	for (int i = 0; i < height; i++)
 	{
 		for (int j = 0; j < width; j++)
 		{
-			printf("%c ", image[i*width + j]);
+			for (int k = 0; k < channel; k++)
+			{
+				printf("%c ", image[(i*width + j) * channel + k]);
+			}
+			
+			printf("  ");
 		}
 
 		printf("\r\n");
 	}
 }
 
+//single channel test
+/*
 int main()
 {
 	unsigned char image[12] = { '1','2','3','4','5','6','7','8','9', 'a', 'b', 'c' };
@@ -192,14 +199,35 @@ int main()
 	int width = 4;
 	int height = 3;
 
-	printImage(image, width, height);
+	printImage(image, width, height,1);
 
 	RotationRight90(image, width, height, 1);
 	//RotationLeft90(image, width, height, 1);
 
 	int width_afterrotation = height;
 	int height_afterrotation = width;
-	printImage(image, width_afterrotation, height_afterrotation);
+	printImage(image, width_afterrotation, height_afterrotation, 1);
+
+	system("pause");
+	return 0;
+}*/
+
+//multichanneltest
+int main()
+{
+	unsigned char image[18] = { '1','2','3','4','5','6','7','8','9', 'a', 'b', 'c', 'd', 'e', 'f', 'h', 'i', 'j' };
+
+	int width = 3;
+	int height = 2;
+
+	printImage(image, width, height, 3);
+
+	//RotationRight90(image, width, height, 1);
+	RotationLeft90(image, width, height, 3);
+
+	int width_afterrotation = height;
+	int height_afterrotation = width;
+	printImage(image, width_afterrotation, height_afterrotation, 3);
 
 	system("pause");
 	return 0;
