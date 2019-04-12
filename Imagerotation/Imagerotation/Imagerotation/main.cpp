@@ -215,19 +215,19 @@ int main()
 //multichanneltest
 int main()
 {
-	unsigned char image[18] = { '1','2','3','4','5','6','7','8','9', 'a', 'b', 'c', 'd', 'e', 'f', 'h', 'i', 'j' };
+	unsigned char image[16] = { '1','2','3','4','5','6','7','8','9', 'a', 'b', 'c', 'd', 'e', 'f', 'g'};
 
-	int width = 3;
+	int width = 4;
 	int height = 2;
 
-	printImage(image, width, height, 3);
+	printImage(image, width, height, 2);
 
 	//RotationRight90(image, width, height, 1);
-	RotationLeft90(image, width, height, 3);
+	RotationLeft90(image, width, height, 2);
 
 	int width_afterrotation = height;
 	int height_afterrotation = width;
-	printImage(image, width_afterrotation, height_afterrotation, 3);
+	printImage(image, width_afterrotation, height_afterrotation, 2);
 
 	system("pause");
 	return 0;
