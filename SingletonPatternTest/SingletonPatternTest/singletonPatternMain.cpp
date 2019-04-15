@@ -7,6 +7,8 @@ class Singleton {
 private:
 	int num;
 	static Singleton* sp;
+
+private:
 	Singleton(int _num) { num = _num; }
 	Singleton(const Singleton&) {}; //∑¿÷π∏¥÷∆∂‘œÛ
 public:
