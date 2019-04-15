@@ -44,8 +44,49 @@ int main()
 #if 1
 int main()
 {
+	map<int, map<int, int> > nestedMap;
 
+	map<int, int> temp;
+
+	temp[9] = 9;
+	temp[10] = 10;
+
+	nestedMap[10] = temp;
+
+	nestedMap[10][11] = 11;
+
+	nestedMap[5][30] = 30;
+
+	map<int, map<int, int> >::iterator nestedIter;
+	map<int, int>::iterator iterator;
+
+	for (nestedIter = nestedMap.begin(); nestedIter != nestedMap.end(); nestedIter++)
+	{
+		for (iterator = nestedIter->second.begin(); iterator != nestedIter->second.end(); iterator++)
+		{
+			cout << nestedIter->first << " " << iterator->first << "(" << iterator->second << ")" << endl;
+		}
+	}
+
+	system("pause");
 }
+
+/*
+动态申请内存的玩法
+map<int, map<int, int>* > nestedMap;
+map<int, int>* temp = new map<int, int>;
+nestedMap[10] = temp;
+
+申请的内存得释放：
+map<int, int>* temp1;
+
+for (nestedItr = nestedMap.begin(); nestedItr != nestedMap.end(); nestedItr++)
+{
+	temp1 = nestedMap->second;
+	delete temp1;
+	temp1 = NULL;
+}
+*/
 #endif
 
 
