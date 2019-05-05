@@ -167,3 +167,7 @@ void main()
 }
 
 ////https://www.cnblogs.com/XiaoGuanYu/p/8168686.html
+//https://www.cnblogs.com/hlwfirst/articles/5424069.html
+//https://www.runoob.com/cplusplus/cpp-multithreading.html
+//https://blog.csdn.net/hai008007/article/details/80246437
+
