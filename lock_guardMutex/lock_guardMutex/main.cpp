@@ -14,7 +14,7 @@ void print_even(int x) {
 void print_thread_id(int id) {
 	try {
 		// using a local lock_guard to lock mtx guarantees unlocking on destruction / exception:
-		std::lock_guard<std::mutex> lck(mtx);
+		std::lock_guard<std::mutex> lck(mtx);  //这是自动锁机制，调用这句话之后，相当于加锁了，然后离开try的大括号作用域之后会自动解锁
 		print_even(id);
 	}
 	catch (std::logic_error&) {
