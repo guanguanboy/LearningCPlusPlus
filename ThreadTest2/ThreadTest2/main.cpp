@@ -42,7 +42,7 @@ void main()
 
 #endif
 
-#if 1
+#if 0
 void pause_thread(int n)
 {
 	std::this_thread::sleep_for(std::chrono::seconds(n));
@@ -105,4 +105,21 @@ int main()
 	请按任意键继续. . . pause of 10 seconds ended
 
 	*/
+#endif
+
+#if 1
+void show()
+{
+	cout << "hello cplusplus!" << endl;
+}
+int main()
+{
+	thread th(show);
+	//th.join();   
+	th.detach();//脱离主线程的绑定，主线程挂了，子线程不报错，子线程执行完自动退出。  
+				//detach以后，子线程会成为孤儿线程，线程之间将无法通信。  
+	cout << th.joinable() << endl;
+	return 0;
+}
+
 #endif
