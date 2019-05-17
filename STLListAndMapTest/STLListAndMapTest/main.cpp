@@ -222,6 +222,8 @@ int main()
 		pVec->push_back(i);
 	}
 
+	cout << " size = " << pVec->size() << endl;
+
 	for (vector<int>::iterator it = pVec->begin(); it != pVec->end(); it++)
 	{
 		cout << *it << " ";
