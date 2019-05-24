@@ -97,6 +97,9 @@ for (nestedItr = nestedMap.begin(); nestedItr != nestedMap.end(); nestedItr++)
 //利用迭代器操作list
 class Demo
 {
+	//string str;
+
+public:
 	string str;
 
 public:
@@ -122,7 +125,8 @@ int main()
 	for (list<Demo>::iterator de_iter = delist.begin();
 		de_iter != delist.end(); de_iter++)
 	{
-		cout << de_iter->getString() << endl;
+		//cout << de_iter->getString() << endl;
+		cout << de_iter->str << endl;
 	}
 
 	list<int> empty;
@@ -190,7 +194,7 @@ int main()
 
 #endif
 
-#if 1
+#if 0
 
 //vector<int> *kkk;//vector向量指针**
 
@@ -231,6 +235,109 @@ int main()
 
 	delete pVec;
 	system("pause");
+}
+
+#endif
+
+#if 0
+
+int main()
+{
+	map <int, string> scores;
+
+	scores.insert(make_pair(100, "maxi"));
+	scores[100] = "MAXI";
+	scores.insert(make_pair(300, "xiaoyu"));
+	scores.insert(make_pair(300, "xiao"));
+	scores[200] = "xiaoma";
+
+	map<int, string>::iterator pScores;
+
+	for (pScores = scores.begin(); pScores != scores.end(); pScores++)
+	{
+		cout << pScores->first << " " << pScores->second << endl;
+	}
+
+	system("pause");
+
+	return 0;
+}
+
+/*
+从上面这个demo可以看出，scores[100] = "MAXI"; 会直接替换掉 原来map中key 100 对应的value,.
+如果调用scores.insert()函数，则由于map中已存在key 为 100的记录，新记录将无法插入。
+由于是单映射，后面加入的新的pair对如果有key值和前面一样，那么后面的pair对元素将不会被加入到map中
+*/
+#endif
+
+#if 1
+
+int main()
+{
+	map<int, map<int, string>> multiMap;
+
+	map<int, string> temp;
+
+	temp.insert(make_pair(90, "hi"));
+	temp.insert(pair<int, string>(100, "maxit"));
+
+	multiMap.insert(make_pair(10, temp));
+
+	multiMap[10][80] = "xiaoyu";
+	multiMap[5][30] = "xiaoma";
+
+	map<int, map<int, string>>::iterator multiIterator;
+	map<int, string>::iterator iter;
+
+	for (multiIterator = multiMap.begin(); multiIterator != multiMap.end(); multiIterator++)
+	{
+		for (iter = multiIterator->second.begin(); iter != multiIterator->second.end(); iter++)
+		{
+			cout << multiIterator->first << " " << iter->first << "(" << iter->second << ")" << endl;
+		}
+	}
+
+	map<int, string>& ref = multiMap[10];
+
+	for (iter = ref.begin(); iter != ref.end(); iter++)
+	{
+		cout << iter->first << "(" << iter->second << ")" << endl;
+	}
+
+
+	multiMap.erase(10);
+
+	cout << "after erase" << endl;
+
+	for (multiIterator = multiMap.begin(); multiIterator != multiMap.end(); multiIterator++)
+	{
+		for (iter = multiIterator->second.begin(); iter != multiIterator->second.end(); iter++)
+		{
+			cout << multiIterator->first << " " << iter->first << "(" << iter->second << ")" << endl;
+		}
+	}
+
+	map<int, string> temp1;
+
+	temp1.insert(make_pair(110, "hi"));
+	temp1.insert(make_pair(120, "hi"));
+
+	multiMap[10] = temp1;
+
+
+	cout << "after add temp1" << endl;
+
+	for (multiIterator = multiMap.begin(); multiIterator != multiMap.end(); multiIterator++)
+	{
+		for (iter = multiIterator->second.begin(); iter != multiIterator->second.end(); iter++)
+		{
+			cout << multiIterator->first << " " << iter->first << "(" << iter->second << ")" << endl;
+		}
+	}
+
+	system("pause");
+
+	return 0;
 }
 
 #endif
